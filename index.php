@@ -80,7 +80,6 @@
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           myObj = JSON.parse(this.responseText);
-      //    document.getElementById("firstslide").attr('src') = slides.first;
           document.getElementById("secondslide").setAttribute("src", myObj.second);
           document.getElementById("thirdslide").setAttribute("src", myObj.third);
       }
