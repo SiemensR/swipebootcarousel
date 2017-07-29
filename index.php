@@ -47,16 +47,13 @@
             <img src="https://unsplash.it/1400/600?image=114">
           </div>
           <div class="item">
-            <img src="https://unsplash.it/1400/600?image=745">
-          </div>
-          <div class="item">
             <img src="https://unsplash.it/1400/600?image=315">
           </div>
           <div class="item">
-            <img src="https://unsplash.it/1400/600?image=622">
+            <img id="secondslide">
           </div>
           <div class="item">
-            <img src="https://unsplash.it/1400/600?image=401">
+            <img id="thirdslide" >
           </div>
         </div>
 
@@ -79,6 +76,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js'></script>
   <script>
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          myObj = JSON.parse(this.responseText);
+      //    document.getElementById("firstslide").attr('src') = slides.first;
+          document.getElementById("secondslide").setAttribute("src", myObj.second);
+          document.getElementById("thirdslide").setAttribute("src", myObj.third);
+      }
+  };
+  xmlhttp.open("GET", "slides.json", true);
+  xmlhttp.send();
+
   $(".carousel").swipe({
 
   swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
